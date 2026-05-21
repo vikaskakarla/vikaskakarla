@@ -21,6 +21,12 @@
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.14"/>
     </linearGradient>
 
+    <!-- Radar sweeper trail gradient -->
+    <linearGradient id="radarTrailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5d4" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#00f5d4" stop-opacity="0"/>
+    </linearGradient>
+
     <!-- App icon plate border gradient -->
     <linearGradient id="iconBorderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25"/>
@@ -130,50 +136,101 @@
   <text x="30" y="130" class="body-text">with premium, interactive interfaces</text>
   <text x="30" y="151" class="body-text">that feel like absolute magic.</text>
 
-  <!-- Telemetry labels -->
-  <circle cx="35" cy="201" r="4" fill="#ff79c6"/>
-  <text x="48" y="200" class="legend-title">UX/UI Craftsmanship</text>
-  <text x="48" y="212" class="legend-sub">High fidelity &amp; animations • 92%</text>
+  <!-- Telemetry HUD Terminal Panel (Lower Left) -->
+  <g transform="translate(30, 185)">
+    <!-- Sub-header -->
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="9" fill="#bd93f9" letter-spacing="1.5">LIVE_TELEMETRY // SENSOR_LOG</text>
+    
+    <!-- Row 1: UI Engine -->
+    <g transform="translate(0, 20)">
+      <rect x="0" y="0" width="6" height="6" rx="2" fill="#ff79c6">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <text x="14" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#FFFFFF">UI_ENGINE</text>
+      <text x="120" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#ff79c6" text-anchor="end">92%_STABLE</text>
+    </g>
 
-  <circle cx="35" cy="231" r="4" fill="#bd93f9"/>
-  <text x="48" y="230" class="legend-title">Clean Architecture</text>
-  <text x="48" y="242" class="legend-sub">Modular &amp; robust codebases • 88%</text>
+    <!-- Row 2: Architecture -->
+    <g transform="translate(0, 40)">
+      <rect x="0" y="0" width="6" height="6" rx="2" fill="#bd93f9">
+        <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="14" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#FFFFFF">SYS_CORE</text>
+      <text x="120" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#bd93f9" text-anchor="end">MODULAR</text>
+    </g>
 
-  <circle cx="35" cy="261" r="4" fill="#00f5d4"/>
-  <text x="48" y="260" class="legend-title">Systems Performance</text>
-  <text x="48" y="272" class="legend-sub">Optimization &amp; scalability • 85%</text>
+    <!-- Row 3: Network Load -->
+    <g transform="translate(0, 60)">
+      <rect x="0" y="0" width="6" height="6" rx="2" fill="#00f5d4">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+      </rect>
+      <text x="14" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#FFFFFF">NET_LOAD</text>
+      <text x="120" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#00f5d4" text-anchor="end">NOMINAL</text>
+    </g>
 
-  <!-- Apple Activity rings overlayed with HUD ticks -->
-  <g transform="translate(295, 155)">
-    <!-- Rotating telemetry outer ring -->
+    <!-- Row 4: Link Status -->
+    <g transform="translate(0, 80)">
+      <rect x="0" y="0" width="6" height="6" rx="2" fill="#FFFFFF" fill-opacity="0.7">
+        <animate attributeName="opacity" values="1;0.2;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="14" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#8E8E93">LINK_STATUS</text>
+      <text x="120" y="6" font-family="Courier New, Courier, monospace" font-size="10" font-weight="700" fill="#8E8E93" text-anchor="end">SECURE</text>
+    </g>
+  </g>
+
+  <!-- HUD Cockpit Radar Scanner (Right Side) -->
+  <g transform="translate(295, 230)">
+    <!-- Base Radar Grids -->
+    <circle cx="0" cy="0" r="60" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1" fill="none"/>
+    <circle cx="0" cy="0" r="45" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+    <circle cx="0" cy="0" r="30" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1" fill="none"/>
+    <circle cx="0" cy="0" r="15" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1" fill="none"/>
+    
+    <!-- Cross axes -->
+    <line x1="-65" y1="0" x2="65" y2="0" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="0.75"/>
+    <line x1="0" y1="-65" x2="0" y2="65" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="0.75"/>
+    
+    <!-- Radar outer degree ticks -->
+    <g stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1">
+      <line x1="0" y1="-60" x2="0" y2="-55" />
+      <line x1="60" y1="0" x2="55" y2="0" />
+      <line x1="0" y1="60" x2="0" y2="55" />
+      <line x1="-60" y1="0" x2="-55" y2="0" />
+    </g>
+
+    <!-- Radar sweep indicator -->
     <g>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
-      <circle cx="0" cy="0" r="68" stroke="#00f5d4" stroke-opacity="0.2" stroke-width="0.75" stroke-dasharray="2,6"/>
-      <circle cx="0" cy="0" r="62" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/>
+      <!-- The sweeping line -->
+      <line x1="0" y1="0" x2="0" y2="-60" stroke="#00f5d4" stroke-width="1.5" stroke-opacity="0.8"/>
+      <!-- Sweeper gradient trail -->
+      <path d="M 0 0 L 0 -60 A 60 60 0 0 0 -42.42 -42.42 Z" fill="url(#radarTrailGrad)" opacity="0.3"/>
     </g>
 
-    <g transform="rotate(-90)">
-      <!-- UX/UI Ring (Outer) -->
-      <circle cx="0" cy="0" r="48" stroke="#ff79c6" stroke-opacity="0.12" stroke-width="8" fill="none"/>
-      <circle cx="0" cy="0" r="48" stroke="#ff79c6" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6" fill="none">
-        <animate attributeName="stroke-dashoffset" from="301.6" to="24.1" dur="2.2s" fill="freeze"/>
+    <!-- Glowing targets on radar -->
+    <!-- Target 1: Cyan -->
+    <g transform="translate(25, -30)">
+      <circle cx="0" cy="0" r="3" fill="#00f5d4">
+        <animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/>
       </circle>
-
-      <!-- Architecture Ring (Middle) -->
-      <circle cx="0" cy="0" r="34" stroke="#bd93f9" stroke-opacity="0.12" stroke-width="8" fill="none"/>
-      <circle cx="0" cy="0" r="34" stroke="#bd93f9" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" fill="none">
-        <animate attributeName="stroke-dashoffset" from="213.6" to="25.6" dur="1.9s" fill="freeze"/>
-      </circle>
-
-      <!-- Performance Ring (Inner) -->
-      <circle cx="0" cy="0" r="20" stroke="#00f5d4" stroke-opacity="0.12" stroke-width="8" fill="none"/>
-      <circle cx="0" cy="0" r="20" stroke="#00f5d4" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" fill="none">
-        <animate attributeName="stroke-dashoffset" from="125.7" to="18.9" dur="1.6s" fill="freeze"/>
-      </circle>
+      <!-- HUD Reticle box -->
+      <rect x="-5" y="-5" width="10" height="10" stroke="#00f5d4" stroke-width="0.5" stroke-opacity="0.5" fill="none"/>
+      <text x="7" y="3" font-family="-apple-system, sans-serif" font-size="7" font-weight="700" fill="#00f5d4" opacity="0.8">TGT_A</text>
     </g>
 
-    <!-- Crosshair indicator center -->
-    <path d="M -6 0 L 6 0 M 0 -6 L 0 6" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="0.75"/>
+    <!-- Target 2: Magenta -->
+    <g transform="translate(-35, 15)">
+      <circle cx="0" cy="0" r="3" fill="#ff79c6">
+        <animate attributeName="r" values="3;5;3" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <rect x="-4" y="-4" width="8" height="8" stroke="#ff79c6" stroke-width="0.5" stroke-opacity="0.5" fill="none"/>
+      <text x="-7" y="-7" font-family="-apple-system, sans-serif" font-size="7" font-weight="700" fill="#ff79c6" opacity="0.8" text-anchor="end">SYS_LOCK</text>
+    </g>
+    
+    <!-- Center core crosshair -->
+    <circle cx="0" cy="0" r="2.5" fill="#FFFFFF" fill-opacity="0.5"/>
   </g>
 
 
