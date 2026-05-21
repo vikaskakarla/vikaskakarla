@@ -5,6 +5,14 @@
       <feGaussianBlur stdDeviation="50" />
     </filter>
 
+    <!-- Frosted Glass Texture (Noise) -->
+    <filter id="glassNoise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.02 0" in="noise" result="coloredNoise"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+      <feBlend mode="overlay" in="coloredNoise" in2="SourceGraphic"/>
+    </filter>
+
     <!-- Glass card border gradient -->
     <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
@@ -13,7 +21,7 @@
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.14"/>
     </linearGradient>
 
-    <!-- App icon border gradient -->
+    <!-- App icon plate border gradient -->
     <linearGradient id="iconBorderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05"/>
@@ -21,15 +29,7 @@
 
     <!-- Card shadows -->
     <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
-
-    <!-- Frosted Glass Texture Filter (Noise) -->
-    <filter id="glassNoise" x="0%" y="0%" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.02 0" in="noise" result="coloredNoise"/>
-      <feComposite operator="in" in2="SourceGraphic"/>
-      <feBlend mode="overlay" in="coloredNoise" in2="SourceGraphic"/>
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
 
     <!-- Diagonal Shine Gradient -->
@@ -53,13 +53,13 @@
     .header-text {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       font-weight: 700;
-      font-size: 11px;
+      font-size: 10px;
       fill: #00f5d4;
       letter-spacing: 2px;
     }
     .body-text {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-      font-size: 13.5px;
+      font-size: 13px;
       fill: #A0A0A5;
       line-height: 1.6;
     }
@@ -76,238 +76,272 @@
     }
     .app-label {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-      font-size: 9.5px;
-      font-weight: 600;
+      font-size: 9px;
+      font-weight: 700;
       fill: #8E8E93;
+      letter-spacing: 0.5px;
+    }
+    .app-version {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 7px;
+      font-weight: 900;
+      fill: #ff79c6;
     }
   </style>
 
   <!-- Deep space background -->
-  <rect width="800" height="320" rx="24" fill="#07060F"/>
+  <rect width="800" height="320" rx="24" fill="#030108"/>
 
-  <!-- Backlight glows underneath cards -->
-  <g filter="url(#auroraBlur)" opacity="0.6">
-    <!-- Left glow (purple) -->
-    <circle cx="150" cy="160" r="100" fill="#bd93f9">
-      <animate attributeName="cx" values="150;200;150" dur="12s" repeatCount="indefinite" />
+  <!-- Backlight glows -->
+  <g filter="url(#auroraBlur)" opacity="0.55">
+    <circle cx="160" cy="160" r="100" fill="#bd93f9">
+      <animate attributeName="cx" values="160;220;160" dur="12s" repeatCount="indefinite" />
     </circle>
-    <!-- Right glow (pink/teal blend) -->
-    <circle cx="650" cy="160" r="110" fill="#ff79c6">
-      <animate attributeName="cx" values="650;580;650" dur="15s" repeatCount="indefinite" />
+    <circle cx="640" cy="160" r="110" fill="#ff79c6">
+      <animate attributeName="cx" values="640;570;640" dur="15s" repeatCount="indefinite" />
     </circle>
-    <circle cx="550" cy="220" r="90" fill="#00f5d4">
-      <animate attributeName="cy" values="220;140;220" dur="14s" repeatCount="indefinite" />
+    <circle cx="530" cy="220" r="90" fill="#00f5d4">
+      <animate attributeName="cy" values="220;130;220" dur="14s" repeatCount="indefinite" />
     </circle>
   </g>
 
-  <!-- Outer border stroke -->
-  <rect width="800" height="320" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
+  <!-- Outer container border -->
+  <rect width="800" height="320" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1.5"/>
 
   <!-- ==================== LEFT BENTO: PHILOSOPHY ==================== -->
   <g filter="url(#cardShadow)">
-    <rect x="10" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.2"/>
-    
-    <!-- Frosted Matte Glass Texture -->
+    <rect x="10" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.012" stroke="url(#borderGrad)" stroke-width="1.2"/>
     <rect x="10" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.01" filter="url(#glassNoise)"/>
 
-    <!-- Diagonal Light Sweep Reflection -->
+    <!-- Light Sweep reflection -->
     <g clip-path="url(#leftCardClip)">
-      <rect x="-150" y="0" width="180" height="400" fill="url(#shineGrad)" transform="skewX(-25)">
-        <animate attributeName="x" values="-250; 950" dur="8s" repeatCount="indefinite"/>
+      <rect x="-180" y="0" width="220" height="400" fill="url(#shineGrad)" transform="skewX(-25)">
+        <animate attributeName="x" values="-280; 1000" dur="7.5s" repeatCount="indefinite"/>
       </rect>
     </g>
-
     <path d="M 28 10 L 362 10" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>
   </g>
 
-  <!-- Header -->
-  <text x="30" y="55" class="header-text">EXEC // SYSTEMS_PHILOSOPHY</text>
+  <text x="30" y="55" class="header-text">EXEC // CORE_SYSTEMS_PHILOSOPHY</text>
 
-  <!-- Text Block -->
-  <text x="30" y="88" class="body-text">Vikas builds high-performance,</text>
-  <text x="30" y="111" class="body-text">modular software architectures and</text>
-  <text x="30" y="134" class="body-text">premium user experiences. He believes</text>
-  <text x="30" y="157" class="body-text">true design is how code works.</text>
+  <!-- Bio / Philosophy statement -->
+  <text x="30" y="88" class="body-text">Vikas engineers high-performance,</text>
+  <text x="30" y="109" class="body-text">modular software architectures and</text>
+  <text x="30" y="130" class="body-text">premium user interfaces. He believes</text>
+  <text x="30" y="151" class="body-text">true design is how the system works.</text>
 
-  <!-- Legends (Left Side Bottom) -->
-  <!-- UI/UX Craft (Pink) -->
+  <!-- Telemetry labels -->
   <circle cx="35" cy="201" r="4" fill="#ff79c6"/>
   <text x="48" y="200" class="legend-title">UX/UI Craftsmanship</text>
   <text x="48" y="212" class="legend-sub">High fidelity &amp; animations • 92%</text>
 
-  <!-- Architecture (Purple) -->
   <circle cx="35" cy="231" r="4" fill="#bd93f9"/>
   <text x="48" y="230" class="legend-title">Clean Architecture</text>
   <text x="48" y="242" class="legend-sub">Modular &amp; robust codebases • 88%</text>
 
-  <!-- Performance (Teal) -->
   <circle cx="35" cy="261" r="4" fill="#00f5d4"/>
   <text x="48" y="260" class="legend-title">Systems Performance</text>
   <text x="48" y="272" class="legend-sub">Optimization &amp; scalability • 85%</text>
 
-  <!-- Concentric Rings (Right Side of Left Pane) -->
-  <g transform="rotate(-90 295 155)">
-    <!-- UX/UI Ring (Outer) -->
-    <circle cx="295" cy="155" r="48" stroke="#ff79c6" stroke-opacity="0.12" stroke-width="8" fill="none"/>
-    <circle cx="295" cy="155" r="48" stroke="#ff79c6" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6" fill="none">
-      <animate attributeName="stroke-dashoffset" from="301.6" to="24.1" dur="2.2s" fill="freeze"/>
-    </circle>
+  <!-- Apple Activity rings overlayed with HUD ticks -->
+  <g transform="translate(295, 155)">
+    <!-- Rotating telemetry outer ring -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+      <circle cx="0" cy="0" r="68" stroke="#00f5d4" stroke-opacity="0.2" stroke-width="0.75" stroke-dasharray="2,6"/>
+      <circle cx="0" cy="0" r="62" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
+    </g>
 
-    <!-- Architecture Ring (Middle) -->
-    <circle cx="295" cy="155" r="34" stroke="#bd93f9" stroke-opacity="0.12" stroke-width="8" fill="none"/>
-    <circle cx="295" cy="155" r="34" stroke="#bd93f9" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" fill="none">
-      <animate attributeName="stroke-dashoffset" from="213.6" to="25.6" dur="1.9s" fill="freeze"/>
-    </circle>
+    <g transform="rotate(-90)">
+      <!-- UX/UI Ring (Outer) -->
+      <circle cx="0" cy="0" r="48" stroke="#ff79c6" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+      <circle cx="0" cy="0" r="48" stroke="#ff79c6" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6" fill="none">
+        <animate attributeName="stroke-dashoffset" from="301.6" to="24.1" dur="2.2s" fill="freeze"/>
+      </circle>
 
-    <!-- Performance Ring (Inner) -->
-    <circle cx="295" cy="155" r="20" stroke="#00f5d4" stroke-opacity="0.12" stroke-width="8" fill="none"/>
-    <circle cx="295" cy="155" r="20" stroke="#00f5d4" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" fill="none">
-      <animate attributeName="stroke-dashoffset" from="125.7" to="18.9" dur="1.6s" fill="freeze"/>
-    </circle>
+      <!-- Architecture Ring (Middle) -->
+      <circle cx="0" cy="0" r="34" stroke="#bd93f9" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+      <circle cx="0" cy="0" r="34" stroke="#bd93f9" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" fill="none">
+        <animate attributeName="stroke-dashoffset" from="213.6" to="25.6" dur="1.9s" fill="freeze"/>
+      </circle>
+
+      <!-- Performance Ring (Inner) -->
+      <circle cx="0" cy="0" r="20" stroke="#00f5d4" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+      <circle cx="0" cy="0" r="20" stroke="#00f5d4" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" fill="none">
+        <animate attributeName="stroke-dashoffset" from="125.7" to="18.9" dur="1.6s" fill="freeze"/>
+      </circle>
+    </g>
+
+    <!-- Crosshair indicator center -->
+    <path d="M -6 0 L 6 0 M 0 -6 L 0 6" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="0.75"/>
   </g>
 
 
   <!-- ==================== RIGHT BENTO: LAUNCHPAD ==================== -->
   <g filter="url(#cardShadow)">
-    <rect x="415" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.2"/>
-    
-    <!-- Frosted Matte Glass Texture -->
+    <rect x="415" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.012" stroke="url(#borderGrad)" stroke-width="1.2"/>
     <rect x="415" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.01" filter="url(#glassNoise)"/>
 
-    <!-- Diagonal Light Sweep Reflection -->
+    <!-- Light Sweep reflection -->
     <g clip-path="url(#rightCardClip)">
-      <rect x="-150" y="0" width="180" height="400" fill="url(#shineGrad)" transform="skewX(-25)">
-        <animate attributeName="x" values="-250; 950" dur="8s" repeatCount="indefinite" begin="1s"/>
+      <rect x="-180" y="0" width="220" height="400" fill="url(#shineGrad)" transform="skewX(-25)">
+        <animate attributeName="x" values="-280; 1000" dur="7.5s" repeatCount="indefinite" begin="1.2s"/>
       </rect>
     </g>
-
     <path d="M 433 10 L 767 10" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>
   </g>
 
-  <!-- Header -->
-  <text x="435" y="55" class="header-text">LAUNCHPAD // CURATED_STACK</text>
+  <text x="435" y="55" class="header-text">SYSTEM_LAUNCHPAD // CURATED_STACK</text>
 
-  <!-- ============ APP ICON GRID (Floating Animations) ============ -->
+  <!-- ==================== TECH APP DOCK ==================== -->
 
   <!-- ROW 1 -->
-  <!-- Col 1: TypeScript -->
+
+  <!-- TypeScript Icon -->
   <g transform="translate(485, 75)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.2s" repeatCount="indefinite" begin="0s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
-      <rect x="8" y="8" width="32" height="32" rx="6" fill="#007acc"/>
-      <text x="35" y="34" font-family="-apple-system, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" text-anchor="end">TS</text>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0" dur="4.2s" repeatCount="indefinite" begin="0s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#00273f" fill-opacity="0.2"/>
+      <!-- Blue TS Graphic -->
+      <rect x="8" y="8" width="32" height="32" rx="5" fill="#3178c6"/>
+      <text x="34" y="33" font-family="-apple-system, sans-serif" font-weight="900" font-size="13" fill="#FFFFFF" text-anchor="end">TS</text>
+      <!-- Mini Code tag -->
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#3178c6">5.4</text>
     </g>
   </g>
   <text x="509" y="136" text-anchor="middle" class="app-label">TypeScript</text>
 
-  <!-- Col 2: React -->
+  <!-- React Icon -->
   <g transform="translate(578, 75)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.6s" repeatCount="indefinite" begin="0.5s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.8s" repeatCount="indefinite" begin="0.5s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#002b36" fill-opacity="0.2"/>
+      <!-- Spin Atom Vector inside -->
       <g transform="translate(24, 24)">
         <g>
-          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
-          <ellipse cx="0" cy="0" rx="14" ry="5.5" stroke="#61dafb" stroke-width="1.2" fill="none"/>
-          <ellipse cx="0" cy="0" rx="14" ry="5.5" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(60)"/>
-          <ellipse cx="0" cy="0" rx="14" ry="5.5" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(120)"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="12s" repeatCount="indefinite"/>
+          <ellipse cx="0" cy="0" rx="13" ry="5" stroke="#61dafb" stroke-width="1.2" fill="none" opacity="0.8"/>
+          <ellipse cx="0" cy="0" rx="13" ry="5" stroke="#61dafb" stroke-width="1.2" fill="none" opacity="0.8" transform="rotate(60)"/>
+          <ellipse cx="0" cy="0" rx="13" ry="5" stroke="#61dafb" stroke-width="1.2" fill="none" opacity="0.8" transform="rotate(120)"/>
           <circle cx="0" cy="0" r="2.5" fill="#61dafb"/>
         </g>
       </g>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#61dafb">18</text>
     </g>
   </g>
   <text x="602" y="136" text-anchor="middle" class="app-label">React</text>
 
-  <!-- Col 3: Next.js -->
+  <!-- Next.js Icon -->
   <g transform="translate(671, 75)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="3.9s" repeatCount="indefinite" begin="1s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4.5; 0 0" dur="4.0s" repeatCount="indefinite" begin="1s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
       <circle cx="24" cy="24" r="14" fill="#000000" stroke="#333333" stroke-width="1"/>
       <path d="M 18 31 L 18 17 L 29 32 L 29 17" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- Pulse backing ring -->
+      <circle cx="24" cy="24" r="14" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1" fill="none">
+        <animate attributeName="r" values="14;20" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#FFFFFF">14</text>
     </g>
   </g>
   <text x="695" y="136" text-anchor="middle" class="app-label">Next.js</text>
 
 
   <!-- ROW 2 -->
-  <!-- Col 1: Node.js -->
+
+  <!-- Node.js Icon -->
   <g transform="translate(485, 148)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.4s" repeatCount="indefinite" begin="1.5s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3.5; 0 0" dur="4.4s" repeatCount="indefinite" begin="1.5s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#182e18" fill-opacity="0.15"/>
       <g transform="translate(24, 24)">
-        <polygon points="12,-7 12,7 0,14 -12,7 -12,-7 0,-14" fill="none" stroke="#339933" stroke-width="1.8"/>
-        <path d="M-4,-4 Q0,-12 4,-4 Q12,0 4,4 Q0,12 -4,4 Q-12,0 -4,-4 Z" fill="#339933" opacity="0.85"/>
+        <polygon points="12,-7 12,7 0,14 -12,7 -12,-7 0,-14" fill="none" stroke="#6cc24a" stroke-width="1.5"/>
+        <path d="M-4,-4 Q0,-12 4,-4 Q12,0 4,4 Q0,12 -4,4 Q-12,0 -4,-4 Z" fill="#6cc24a" opacity="0.8"/>
       </g>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#6cc24a">20</text>
     </g>
   </g>
   <text x="509" y="209" text-anchor="middle" class="app-label">Node.js</text>
 
-  <!-- Col 2: Go -->
+  <!-- Go Icon -->
   <g transform="translate(578, 148)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.8s" repeatCount="indefinite" begin="0.2s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
-      <text x="24" y="29" font-family="-apple-system, sans-serif" font-weight="900" font-style="italic" font-size="18" fill="#00ADD8" text-anchor="middle" letter-spacing="-0.5">Go</text>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4.2; 0 0" dur="5.1s" repeatCount="indefinite" begin="0.2s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#002a35" fill-opacity="0.2"/>
+      <text x="24" y="30" font-family="-apple-system, sans-serif" font-weight="900" font-style="italic" font-size="18" fill="#00ADD8" text-anchor="middle" letter-spacing="-0.5">Go</text>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#00ADD8">1.22</text>
     </g>
   </g>
-  <text x="602" y="209" text-anchor="middle" class="app-label">Go</text>
+  <text x="602" y="209" text-anchor="middle" class="app-label">Go-Lang</text>
 
-  <!-- Col 3: Python -->
+  <!-- Python Icon -->
   <g transform="translate(671, 148)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.1s" repeatCount="indefinite" begin="0.8s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3.8; 0 0" dur="4.1s" repeatCount="indefinite" begin="0.8s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#202235" fill-opacity="0.2"/>
       <g transform="translate(14, 14)">
         <path d="M 9 0 L 14 0 A 5 5 0 0 1 19 5 L 19 9 L 17 9 A 2 2 0 0 0 15 11 L 15 14 A 5 5 0 0 1 10 19 L 5 19 A 5 5 0 0 1 0 14 L 0 10 L 2 10 A 2 2 0 0 0 4 8 L 4 5 A 5 5 0 0 1 9 0 Z" fill="#3572A5"/>
-        <path d="M 11 20 L 6 20 A 5 5 0 0 1 1 15 L 1 11 L 3 11 A 2 2 0 0 0 5 9 L 5 6 A 5 5 0 0 1 10 1 L 15 1 A 5 5 0 0 1 20 6 L 20 10 L 18 10 A 2 2 0 0 0 16 12 L 16 15 A 5 5 0 0 1 11 20 Z" fill="#F1E05A" opacity="0.95" transform="rotate(180 10 10)"/>
+        <path d="M 11 20 L 6 20 A 5 5 0 0 1 1 15 L 1 11 L 3 11 A 2 2 0 0 0 5 9 L 5 6 A 5 5 0 0 1 10 1 L 15 1 A 5 5 0 0 1 20 6 L 20 10 L 18 10 A 2 2 0 0 0 16 12 L 16 15 A 5 5 0 0 1 11 20 Z" fill="#F1E05A" opacity="0.9" transform="rotate(180 10 10)"/>
       </g>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#F1E05A">3.12</text>
     </g>
   </g>
   <text x="695" y="209" text-anchor="middle" class="app-label">Python</text>
 
 
   <!-- ROW 3 -->
-  <!-- Col 1: AWS -->
+
+  <!-- AWS Icon -->
   <g transform="translate(485, 221)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.3s" repeatCount="indefinite" begin="1.2s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
-      <path d="M 12 28 C 12 24 16 23 18 23 C 24 23 25 26 25 29 C 22 30 18 30 16 30 C 13 30 12 29 12 28 Z M 30 24 C 29 22 26 19 21 19 C 14 19 10 24 10 29 C 10 33 13 36 18 36 C 22 36 25 34 26 32 C 26 34 28 35 30 35 C 32 35 34 34 34 32 C 34 28 34 22 34 20 C 34 16 32 14 28 14 C 25 14 22 16 21 17 M 13 36 A 28 28 0 0 0 35 36" stroke="#FF9900" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4.6; 0 0" dur="4.3s" repeatCount="indefinite" begin="1.2s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#332010" fill-opacity="0.15"/>
+      <path d="M 12 28 C 12 24 16 23 18 23 C 24 23 25 26 25 29 C 22 30 18 30 16 30 C 13 30 12 29 12 28 Z M 30 24 C 29 22 26 19 21 19 C 14 19 10 24 10 29 C 10 33 13 36 18 36 C 22 36 25 34 26 32 C 26 34 28 35 30 35 C 32 35 34 34 34 32 C 34 28 34 22 34 20 C 34 16 32 14 28 14 C 25 14 22 16 21 17 M 13 36 A 28 28 0 0 0 35 36" stroke="#FF9900" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#FF9900">CLD</text>
     </g>
   </g>
   <text x="509" y="282" text-anchor="middle" class="app-label">AWS</text>
 
-  <!-- Col 2: Docker -->
+  <!-- Docker Icon -->
   <g transform="translate(578, 221)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.7s" repeatCount="indefinite" begin="0.4s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
-      <path d="M 10 24 L 38 24 C 38 21 34 21 34 18 C 30 18 30 21 27 21 C 27 18 23 18 23 15 L 20 15 C 20 18 16 18 16 21 C 12 21 12 18 12 16 L 10 16 Z M 8 26 C 8 32 15 35 24 35 C 33 35 38 32 40 26 Z" fill="#2496ED"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3.6; 0 0" dur="4.9s" repeatCount="indefinite" begin="0.4s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#0b2230" fill-opacity="0.2"/>
+      <path d="M 10 24 L 38 24 C 38 21 34 21 34 18 C 30 18 30 21 27 21 C 27 18 23 18 23 15 L 20 15 C 20 18 16 18 16 21 C 12 21 12 18 12 16 L 10 16 Z M 8 26 C 8 32 15 35 24 35 C 33 35 38 32 40 26 Z" fill="#2496ED" opacity="0.85"/>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#2496ED">RUN</text>
     </g>
   </g>
   <text x="602" y="282" text-anchor="middle" class="app-label">Docker</text>
 
-  <!-- Col 3: GraphQL -->
+  <!-- GraphQL Icon -->
   <g transform="translate(671, 221)">
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="4.0s" repeatCount="indefinite" begin="1.7s"/>
-      <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4.3; 0 0" dur="4.2s" repeatCount="indefinite" begin="1.7s"/>
+      <rect width="48" height="48" rx="12" fill="#0A0B10" stroke="url(#iconBorderGrad)" stroke-width="1.2"/>
+      <rect x="2" y="2" width="44" height="44" rx="10" fill="#2b1020" fill-opacity="0.2"/>
       <g transform="translate(24, 24)">
-        <polygon points="0,-13 11,-7 11,7 0,13 -11,7 -11,-7" fill="none" stroke="#e10098" stroke-width="1.2"/>
-        <polygon points="-11,-7 11,7" fill="none" stroke="#e10098" stroke-width="1.2"/>
-        <polygon points="11,-7 -11,7" fill="none" stroke="#e10098" stroke-width="1.2"/>
-        <polygon points="0,-13 0,13" fill="none" stroke="#e10098" stroke-width="1.2"/>
-        <circle cx="0" cy="-13" r="2" fill="#e10098"/>
-        <circle cx="11" cy="-7" r="2" fill="#e10098"/>
-        <circle cx="11" cy="7" r="2" fill="#e10098"/>
-        <circle cx="0" cy="13" r="2" fill="#e10098"/>
-        <circle cx="-11" cy="7" r="2" fill="#e10098"/>
-        <circle cx="-11" cy="-7" r="2" fill="#e10098"/>
-        <circle cx="0" cy="0" r="2.5" fill="#e10098"/>
+        <polygon points="0,-12 10,-6 10,6 0,12 -10,6 -10,-6" fill="none" stroke="#e10098" stroke-width="1.2"/>
+        <polygon points="-10,-6 10,6" fill="none" stroke="#e10098" stroke-width="1"/>
+        <polygon points="10,-6 -10,6" fill="none" stroke="#e10098" stroke-width="1"/>
+        <polygon points="0,-12 0,12" fill="none" stroke="#e10098" stroke-width="1"/>
+        <circle cx="0" cy="-12" r="1.8" fill="#e10098"/>
+        <circle cx="10" cy="-6" r="1.8" fill="#e10098"/>
+        <circle cx="10" cy="6" r="1.8" fill="#e10098"/>
+        <circle cx="0" cy="12" r="1.8" fill="#e10098"/>
+        <circle cx="-10" cy="6" r="1.8" fill="#e10098"/>
+        <circle cx="-10" cy="-6" r="1.8" fill="#e10098"/>
+        <circle cx="0" cy="0" r="2.2" fill="#e10098"/>
       </g>
+      <text x="42" y="11" class="app-version" text-anchor="end" fill="#e10098">QRY</text>
     </g>
   </g>
   <text x="695" y="282" text-anchor="middle" class="app-label">GraphQL</text>

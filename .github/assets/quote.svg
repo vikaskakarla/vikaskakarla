@@ -1,28 +1,38 @@
 <svg fill="none" viewBox="0 0 800 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Heavy blur for soft backlighting -->
+    <!-- Heavy blur for backlight glow -->
     <filter id="auroraBlur">
       <feGaussianBlur stdDeviation="40" />
     </filter>
-    
-    <!-- Glass border gradient -->
+
+    <!-- Frosted Glass Texture (Noise) -->
+    <filter id="glassNoise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.03 0" in="noise" result="coloredNoise"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+      <feBlend mode="overlay" in="coloredNoise" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Glass card border gradient -->
     <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
       <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.03"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.12"/>
     </linearGradient>
 
+    <!-- Glowing gradients -->
+    <linearGradient id="cyanNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5d4"/>
+      <stop offset="100%" stop-color="#00bbf9"/>
+    </linearGradient>
+    <linearGradient id="magentaNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff79c6"/>
+      <stop offset="100%" stop-color="#bd93f9"/>
+    </linearGradient>
+
     <!-- Glass card drop shadow -->
     <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
-
-    <!-- Frosted Glass Texture Filter (Noise) -->
-    <filter id="glassNoise" x="0%" y="0%" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.025 0" in="noise" result="coloredNoise"/>
-      <feComposite operator="in" in2="SourceGraphic"/>
-      <feBlend mode="overlay" in="coloredNoise" in2="SourceGraphic"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.45"/>
     </filter>
 
     <!-- Diagonal Shine Gradient -->
@@ -32,73 +42,118 @@
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- Clip Path for the Glass Card -->
+    <!-- Clip Path for Glass Card -->
     <clipPath id="cardClip">
-      <rect x="50" y="20" width="700" height="110" rx="18"/>
+      <rect x="40" y="20" width="720" height="110" rx="18"/>
     </clipPath>
   </defs>
 
   <!-- Deep space background -->
-  <rect width="800" height="150" rx="20" fill="#07060F"/>
-  
-  <!-- Aurora Glow behind Card -->
-  <g filter="url(#auroraBlur)" opacity="0.55">
-    <circle cx="350" cy="75" r="90" fill="#bd93f9">
-      <animate attributeName="cx" values="350;450;350" dur="15s" repeatCount="indefinite" />
-      <animate attributeName="r" values="90;110;90" dur="15s" repeatCount="indefinite" />
+  <rect width="800" height="150" rx="24" fill="#030108"/>
+
+  <!-- Backlight Glows -->
+  <g filter="url(#auroraBlur)" opacity="0.5">
+    <circle cx="300" cy="75" r="80" fill="#bd93f9">
+      <animate attributeName="cx" values="300;450;300" dur="14s" repeatCount="indefinite" />
+      <animate attributeName="r" values="80;100;80" dur="14s" repeatCount="indefinite" />
     </circle>
-    <circle cx="500" cy="75" r="80" fill="#ff79c6">
-      <animate attributeName="cx" values="500;400;500" dur="18s" repeatCount="indefinite" />
-      <animate attributeName="r" values="80;95;80" dur="18s" repeatCount="indefinite" />
+    <circle cx="520" cy="75" r="70" fill="#ff79c6">
+      <animate attributeName="cx" values="520;380;520" dur="16s" repeatCount="indefinite" />
+      <animate attributeName="r" values="70;90;70" dur="16s" repeatCount="indefinite" />
     </circle>
   </g>
-  
-  <!-- Outer border stroke -->
-  <rect width="800" height="150" rx="20" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
+
+  <!-- Outer card subtle border outline -->
+  <rect width="800" height="150" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1.5"/>
 
   <!-- Frosted Glass Card -->
   <g filter="url(#cardShadow)">
-    <rect x="50" y="20" width="700" height="110" rx="18" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.2"/>
+    <rect x="40" y="20" width="720" height="110" rx="18" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.2"/>
     
     <!-- Frosted Matte Glass Texture -->
-    <rect x="50" y="20" width="700" height="110" rx="18" fill="#FFFFFF" fill-opacity="0.01" filter="url(#glassNoise)"/>
+    <rect x="40" y="20" width="720" height="110" rx="18" fill="#FFFFFF" fill-opacity="0.01" filter="url(#glassNoise)"/>
 
     <!-- Diagonal Light Sweep Reflection -->
     <g clip-path="url(#cardClip)">
-      <rect x="-150" y="0" width="180" height="200" fill="url(#shineGrad)" transform="skewX(-25)">
-        <animate attributeName="x" values="-250; 950" dur="6s" repeatCount="indefinite"/>
+      <rect x="-180" y="0" width="220" height="200" fill="url(#shineGrad)" transform="skewX(-28)">
+        <animate attributeName="x" values="-280; 1000" dur="6.5s" repeatCount="indefinite"/>
       </rect>
     </g>
 
-    <path d="M 68 20 L 732 20" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>
+    <path d="M 58 20 L 742 20" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
   </g>
 
-  <!-- Translucent giant quotation mark -->
-  <text x="70" y="105" font-family="Georgia, serif" font-size="110" font-weight="900" fill="#FFFFFF" fill-opacity="0.04">“</text>
+  <!-- ==================== MINI OSCILLOSCOPE DISP ==================== -->
+  <g transform="translate(65, 35)">
+    <!-- Oscilloscope bounding box -->
+    <rect x="0" y="0" width="160" height="80" rx="10" fill="#000000" fill-opacity="0.4" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1"/>
+    
+    <!-- Oscilloscope fine grid -->
+    <line x1="0" y1="40" x2="160" y2="40" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="0.75"/>
+    <line x1="80" y1="0" x2="80" y2="80" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="0.75"/>
+    <path d="M 0 20 L 160 20 M 0 60 L 160 60 M 40 0 L 40 80 M 120 0 L 120 80" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="0.5" stroke-dasharray="2,4"/>
 
-  <!-- Quote Typography -->
+    <!-- Ticking borders -->
+    <path d="M 80 0 L 80 4 M 80 76 L 80 80 M 0 40 L 4 40 M 156 40 L 160 40" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
+
+    <!-- Oscilloscope Signal wave 1 (Cyan - Main Voice Signal) -->
+    <path stroke="url(#cyanNeon)" stroke-width="1.75" fill="none" stroke-linecap="round" opacity="0.85">
+      <animate attributeName="d" dur="4.5s" repeatCount="indefinite"
+        values="
+          M 10 40 Q 25 15, 40 40 T 70 40 T 100 40 T 130 65 T 150 40;
+          M 10 40 Q 25 65, 40 40 T 70 15 T 100 65 T 130 40 T 150 40;
+          M 10 40 Q 25 40, 40 40 T 70 65 T 100 15 T 130 40 T 150 40;
+          M 10 40 Q 25 15, 40 40 T 70 40 T 100 40 T 130 65 T 150 40
+        "/>
+    </path>
+
+    <!-- Oscilloscope Signal wave 2 (Purple - Carrier Wave) -->
+    <path stroke="url(#magentaNeon)" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5" stroke-dasharray="1,2">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite"
+        values="
+          M 10 40 T 30 55 T 50 40 T 70 25 T 90 40 T 110 55 T 130 40 T 150 30;
+          M 10 40 T 30 25 T 50 40 T 70 55 T 90 40 T 110 25 T 130 40 T 150 50;
+          M 10 40 T 30 40 T 50 40 T 70 25 T 90 40 T 110 55 T 130 40 T 150 30
+        "/>
+    </path>
+    
+    <!-- Pulse signal overlay dot -->
+    <circle cx="150" cy="40" r="2.5" fill="#50fa7b">
+      <animate attributeName="cy" values="40;40;40;40" dur="4.5s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="10; 150; 10" dur="8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Giant typographic quote mark -->
+  <text x="245" y="80" font-family="Georgia, serif" font-size="75" font-weight="900" fill="#FFFFFF" fill-opacity="0.04">“</text>
+
+  <!-- Typography -->
   <style>
     .quote-txt {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       font-weight: 500;
-      font-size: 14.5px;
-      fill: #FFFFFF;
+      font-size: 13px;
+      fill: #E1E1E6;
       letter-spacing: -0.1px;
     }
     .author-txt {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-      font-weight: 700;
-      font-size: 10px;
+      font-weight: 800;
+      font-size: 9px;
       fill: #00f5d4;
       letter-spacing: 2px;
     }
   </style>
 
-  <!-- Quote Texts -->
-  <text x="110" y="58" class="quote-txt">“The people who are crazy enough to think they can change the world</text>
-  <text x="110" y="80" class="quote-txt">are the ones who do.”</text>
-  <text x="110" y="106" class="author-txt">STEVE JOBS</text>
-  
-  <!-- Subtle decorative code tag on the right side -->
-  <text x="715" y="38" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="9" font-weight="600" fill="#bd93f9" opacity="0.6">SYS.QUOTE_CORE // v1.0.0</text>
+  <!-- Steve Jobs Quote (Compact, Clean layout next to Scope screen) -->
+  <g transform="translate(275, 42)">
+    <text x="0" y="18" class="quote-txt">“The people who are crazy enough to think they can change the world</text>
+    <text x="0" y="38" class="quote-txt">are the ones who do.”</text>
+    <text x="0" y="65" class="author-txt">STEVE JOBS</text>
+  </g>
+
+  <!-- Technical label tags -->
+  <text x="735" y="38" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="7.5" font-weight="900" fill="#bd93f9" opacity="0.6">SYS.AUDIO_BEAM // ENVELOPE_V2.0</text>
+  <text x="735" y="112" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="7.5" font-weight="900" fill="#00f5d4" opacity="0.5">FREQ: 44.1KHZ // MODE: COMPANDER</text>
+
 </svg>

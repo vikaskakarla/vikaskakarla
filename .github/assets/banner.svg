@@ -1,29 +1,39 @@
 <svg fill="none" viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Heavy blur for Aurora background -->
+    <!-- Heavy blur for backlighting aurora -->
     <filter id="auroraBlur">
-      <feGaussianBlur stdDeviation="70" />
+      <feGaussianBlur stdDeviation="60" />
     </filter>
-    
-    <!-- Chamfered border gradient for glass shine -->
+
+    <!-- Frosted Glass Texture (Noise) -->
+    <filter id="glassNoise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.03 0" in="noise" result="coloredNoise"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+      <feBlend mode="overlay" in="coloredNoise" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Chamfered border gradient -->
     <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25"/>
-      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.04"/>
       <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.02"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.18"/>
+    </linearGradient>
+
+    <!-- Glowing gradients for tech accents -->
+    <linearGradient id="cyanNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5d4"/>
+      <stop offset="100%" stop-color="#00bbf9"/>
+    </linearGradient>
+    <linearGradient id="magentaNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff79c6"/>
+      <stop offset="100%" stop-color="#bd93f9"/>
     </linearGradient>
 
     <!-- Glass card drop shadow -->
     <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.5"/>
-    </filter>
-
-    <!-- Frosted Glass Texture Filter (Noise) -->
-    <filter id="glassNoise" x="0%" y="0%" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.025 0" in="noise" result="coloredNoise"/>
-      <feComposite operator="in" in2="SourceGraphic"/>
-      <feBlend mode="overlay" in="coloredNoise" in2="SourceGraphic"/>
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.6"/>
     </filter>
 
     <!-- Diagonal Shine Gradient -->
@@ -33,91 +43,190 @@
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- Clip Path for the Glass Card -->
+    <!-- Clip Path for Glass Card -->
     <clipPath id="cardClip">
-      <rect x="50" y="40" width="700" height="220" rx="24"/>
+      <rect x="40" y="30" width="720" height="240" rx="20"/>
     </clipPath>
+
+    <!-- Grid Pattern -->
+    <pattern id="hudGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="0.75"/>
+      <circle cx="0" cy="0" r="1.5" fill="#FFFFFF" fill-opacity="0.15"/>
+    </pattern>
   </defs>
 
-  <!-- Deep space background -->
-  <rect width="800" height="300" rx="24" fill="#07060F"/>
-  
-  <!-- Aurora Background Elements (Liquid Glow) -->
-  <g filter="url(#auroraBlur)" opacity="0.65">
-    <!-- Pink blob moving in organic path -->
-    <circle cx="200" cy="100" r="140" fill="#ff79c6">
-      <animate attributeName="cx" values="200;450;150;200" dur="20s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="100;200;80;100" dur="20s" repeatCount="indefinite" />
-      <animate attributeName="r" values="140;160;130;140" dur="20s" repeatCount="indefinite" />
+  <!-- Deep cyber space background -->
+  <rect width="800" height="300" rx="24" fill="#030108"/>
+  <rect width="800" height="300" rx="24" fill="url(#hudGrid)"/>
+
+  <!-- Aurora lighting blobs -->
+  <g filter="url(#auroraBlur)" opacity="0.55">
+    <circle cx="180" cy="90" r="130" fill="#ff79c6">
+      <animate attributeName="cx" values="180;380;120;180" dur="22s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="90;180;60;90" dur="22s" repeatCount="indefinite" />
     </circle>
-    <!-- Teal/Cyan blob moving in anti-phase -->
-    <circle cx="600" cy="200" r="150" fill="#00f5d4">
-      <animate attributeName="cx" values="600;350;650;600" dur="24s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="200;100;220;200" dur="24s" repeatCount="indefinite" />
-      <animate attributeName="r" values="150;130;160;150" dur="24s" repeatCount="indefinite" />
+    <circle cx="620" cy="210" r="140" fill="#00f5d4">
+      <animate attributeName="cx" values="620;420;680;620" dur="26s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="210;110;240;210" dur="26s" repeatCount="indefinite" />
     </circle>
-    <!-- Purple blob moving in center-ish area -->
-    <circle cx="400" cy="150" r="160" fill="#bd93f9">
-      <animate attributeName="cx" values="400;500;300;400" dur="18s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="150;110;190;150" dur="18s" repeatCount="indefinite" />
-      <animate attributeName="r" values="160;180;150;160" dur="18s" repeatCount="indefinite" />
+    <circle cx="400" cy="150" r="150" fill="#bd93f9">
+      <animate attributeName="cx" values="400;480;320;400" dur="19s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="150;100;200;150" dur="19s" repeatCount="indefinite" />
     </circle>
   </g>
-  
-  <!-- Subtle dark vignette grid overlay -->
-  <rect width="800" height="300" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
+
+  <!-- Faint perspective horizontal matrix lines -->
+  <line x1="0" y1="280" x2="800" y2="280" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="0" y1="290" x2="800" y2="290" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1.5"/>
 
   <!-- Frosted Glass Card -->
   <g filter="url(#cardShadow)">
-    <!-- Glass Base -->
-    <rect x="50" y="40" width="700" height="220" rx="24" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.5"/>
+    <!-- Base Plate -->
+    <rect x="40" y="30" width="720" height="240" rx="20" fill="#FFFFFF" fill-opacity="0.012" stroke="url(#borderGrad)" stroke-width="1.2"/>
     
-    <!-- Frosted Matte Glass Texture -->
-    <rect x="50" y="40" width="700" height="220" rx="24" fill="#FFFFFF" fill-opacity="0.01" filter="url(#glassNoise)"/>
+    <!-- Matte Texture -->
+    <rect x="40" y="30" width="720" height="240" rx="20" fill="#FFFFFF" fill-opacity="0.01" filter="url(#glassNoise)"/>
 
-    <!-- Diagonal Light Sweep Reflection (Clip Path keeps it inside card) -->
+    <!-- Light Sweep reflection -->
     <g clip-path="url(#cardClip)">
-      <rect x="-150" y="0" width="180" height="350" fill="url(#shineGrad)" transform="skewX(-25)">
-        <animate attributeName="x" values="-250; 950" dur="6s" repeatCount="indefinite"/>
+      <rect x="-180" y="0" width="220" height="320" fill="url(#shineGrad)" transform="skewX(-28)">
+        <animate attributeName="x" values="-280; 1000" dur="7s" repeatCount="indefinite"/>
       </rect>
     </g>
 
-    <!-- Top glass reflection highlight -->
-    <path d="M 74 40 L 726 40" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
+    <!-- Top highlight stroke -->
+    <path d="M 60 30 L 740 30" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1"/>
   </g>
 
-  <!-- Active Status dot in the top-right of glass pane -->
-  <g transform="translate(640, 65)">
-    <!-- Expanding ripple circle -->
-    <circle cx="0" cy="0" r="4" fill="#50fa7b" opacity="0.4">
-      <animate attributeName="r" values="4;14" dur="2.5s" repeatCount="indefinite"/>
+  <!-- ==================== HUD INTERACTIVE ELEMENTS ==================== -->
+  
+  <!-- Compass Dial (Top Right of glass card) -->
+  <g transform="translate(670, 150)">
+    <!-- Outer dashed telemetry ring - Clockwise -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="25s" repeatCount="indefinite"/>
+      <circle cx="0" cy="0" r="62" stroke="url(#cyanNeon)" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="6,8"/>
+      <path d="M 0 -66 L 0 -58 M 0 58 L 0 66 M -66 0 L -58 0 M 58 0 L 66 0" stroke="url(#cyanNeon)" stroke-opacity="0.4" stroke-width="1"/>
+    </g>
+
+    <!-- Inner ticked ring - Counter-clockwise -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="18s" repeatCount="indefinite"/>
+      <circle cx="0" cy="0" r="50" stroke="url(#magentaNeon)" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="2,6"/>
+      <path d="M -35.3 -35.3 L -30.3 -30.3 M 35.3 35.3 L 30.3 30.3 M -35.3 35.3 L -30.3 30.3 M 35.3 -35.3 L 30.3 -30.3" stroke="url(#magentaNeon)" stroke-opacity="0.4" stroke-width="1"/>
+    </g>
+
+    <!-- Center Crosshair and pulse beacon -->
+    <circle cx="0" cy="0" r="3" fill="#50fa7b">
+      <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="8" stroke="#50fa7b" stroke-opacity="0.5" stroke-width="1" fill="none">
+      <animate attributeName="r" values="3;16" dur="2.5s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="0.8;0" dur="2.5s" repeatCount="indefinite"/>
     </circle>
-    <!-- Core dot -->
-    <circle cx="0" cy="0" r="4.5" fill="#50fa7b"/>
-    <text x="14" y="3.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800" fill="#50fa7b" letter-spacing="1">SYS_ACTIVE</text>
+    <line x1="-12" y1="0" x2="12" y2="0" stroke="#00f5d4" stroke-opacity="0.5" stroke-width="0.75"/>
+    <line x1="0" y1="-12" x2="0" y2="12" stroke="#00f5d4" stroke-opacity="0.5" stroke-width="0.75"/>
   </g>
 
-  <!-- Typography -->
+  <!-- Left Side Cyber-metrics Terminal Panel -->
+  <g transform="translate(70, 75)">
+    <style>
+      .metric-label {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 700;
+        font-size: 8px;
+        fill: #8E8E93;
+        letter-spacing: 1px;
+      }
+      .metric-value {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 700;
+        font-size: 9px;
+        fill: #00f5d4;
+        letter-spacing: 1px;
+      }
+      .beacon-txt {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 9px;
+        font-weight: 800;
+        fill: #50fa7b;
+        letter-spacing: 1.5px;
+      }
+    </style>
+    
+    <!-- Pulse Uptime Indicator -->
+    <g transform="translate(0, 0)">
+      <circle cx="5" cy="5" r="4" fill="#50fa7b" opacity="0.3">
+        <animate attributeName="r" values="4;10" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="5" cy="5" r="3" fill="#50fa7b"/>
+      <text x="18" y="8.5" class="beacon-txt">SYS_ONLINE</text>
+    </g>
+
+    <!-- Diagnostic Details -->
+    <text x="5" y="32" class="metric-label">HOST_IP: <tspan class="metric-value">127.0.0.1</tspan></text>
+    <text x="5" y="47" class="metric-label">LOC_REF: <tspan class="metric-value">LAT_37.77 / LON_-122.41</tspan></text>
+    <text x="5" y="62" class="metric-label">SYS.LOAD: <tspan class="metric-value">0.42 // CORE_READY</tspan></text>
+    <text x="5" y="77" class="metric-label">MEM_HEAP: <tspan class="metric-value">18.42 MB / 64MB</tspan></text>
+    <text x="5" y="92" class="metric-label">FRAMEWORK: <tspan class="metric-value">V-STACK v4.11</tspan></text>
+    <text x="5" y="107" class="metric-label">COMPILE: <tspan class="metric-value" fill="#ff79c6">SUCCESSFUL</tspan></text>
+    
+    <!-- Vector Graphic Telemetry lines -->
+    <path d="M 0 118 L 120 118 L 125 123 L 180 123" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1" fill="none"/>
+    <circle cx="180" cy="123" r="1.5" fill="#00f5d4"/>
+  </g>
+
+  <!-- ==================== CENTER MONOGRAM & NAME ==================== -->
+  
   <style>
-    .title-text {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-      font-weight: 800;
-      font-size: 44px;
-      fill: #FFFFFF;
-      letter-spacing: 6px;
+    .mono-brackets {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-size: 32px;
+      font-weight: 200;
+      fill: #bd93f9;
+      letter-spacing: 2px;
     }
-    .subtitle-text {
+    .mono-logo {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      fill: #FFFFFF;
+      letter-spacing: 2px;
+    }
+    .main-title {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      fill: #FFFFFF;
+      letter-spacing: 7px;
+    }
+    .main-subtitle {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-      font-weight: 600;
-      font-size: 11px;
+      font-weight: 700;
+      font-size: 10px;
       fill: #A0A0A5;
       letter-spacing: 4px;
     }
   </style>
 
-  <!-- Main Headers -->
-  <text x="400" y="145" dominant-baseline="middle" text-anchor="middle" class="title-text">VIKAS KAKARLA</text>
-  <text x="400" y="195" dominant-baseline="middle" text-anchor="middle" class="subtitle-text">CRAFTING PREMIUM DIGITAL EXPERIENCES</text>
+  <!-- Glowing logo assembly -->
+  <g transform="translate(400, 100)" text-anchor="middle">
+    <!-- Monogram brackets -->
+    <text x="0" y="0" class="mono-brackets">[ <tspan class="mono-logo" fill="url(#cyanNeon)">V K</tspan> ]</text>
+    <circle cx="0" cy="15" r="2" fill="#ff79c6">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Main Name Header -->
+  <text x="400" y="165" text-anchor="middle" class="main-title">VIKAS KAKARLA</text>
+
+  <!-- Subtitle Tagline -->
+  <text x="400" y="200" text-anchor="middle" class="main-subtitle">ARCHITECTING PREMIUM DIGITAL ECOSYSTEMS</text>
+
+  <!-- Subtle corner tech markings -->
+  <text x="55" y="52" font-family="Courier New" font-size="7" fill="#bd93f9" opacity="0.4" font-weight="900">CORE.VER.2.6.5</text>
+  <text x="745" y="52" text-anchor="end" font-family="Courier New" font-size="7" fill="#00f5d4" opacity="0.4" font-weight="900">SYS_HUD_ACTIVE</text>
 
 </svg>
