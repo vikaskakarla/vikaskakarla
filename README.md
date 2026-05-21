@@ -33,7 +33,7 @@
   <tr>
     <td colspan="2" align="center" valign="top">
       <br/>
-      <img src="https://streak-stats.demolab.com/?user=vikaskakarla&theme=dracula&background=030108&border=1F1E2E&ring=BD93F9&fire=FF79C6&currStreakLabel=FFFFFF&count_private=true&cache_seconds=1800" width="100%" alt="Commit Streak Stats" />
+      <img src="https://streak-stats.vercel.app/?user=vikaskakarla&theme=dracula&background=030108&border=1F1E2E&ring=BD93F9&fire=FF79C6&currStreakLabel=FFFFFF&count_private=true" width="100%" alt="Commit Streak Stats" />
     </td>
   </tr>
 </table>
