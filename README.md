@@ -6,7 +6,7 @@
 <br/><br/>
 
 <!-- REAL-TIME TYPING STATUS (PREMIUM FONT & THEME) -->
-<img src="https://readme-typing-svg.demolab.com?font=Outfit&weight=600&size=22&duration=3000&pause=1000&color=BD93F9&center=true&vCenter=true&width=800&lines=CRAFTING+HIGH-PERFORMANCE+SYSTEMS...;DESIGNING+PREMIUM+USER+INTERFACES...;DEVELOPING+MODULAR+ARCHITECTURES...;+EXPERIENCES+THAT+FEEL+LIKE+MAGIC" alt="Real-time typing status" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=22&duration=3000&pause=1000&color=BD93F9&center=true&vCenter=true&width=800&lines=CRAFTING+HIGH-PERFORMANCE+SYSTEMS...;DESIGNING+PREMIUM+USER+INTERFACES...;DEVELOPING+MODULAR+ARCHITECTURES...;EXPERIENCES+THAT+FEEL+LIKE+MAGIC" alt="Real-time typing status" />
 
 <br/><br/>
 
@@ -33,7 +33,7 @@
   <tr>
     <td colspan="2" align="center" valign="top">
       <br/>
-      <img src="https://streak-stats.demolab.com/?user=vikaskakarla&background=07060F&stroke=ff79c6&ring=bd93f9&fire=ff79c6&currStreakLabel=ffffff&sideLabels=A0A0A5&dates=7D7D82&border=1F1E2E" width="100%" alt="Commit Streak Stats" />
+      <img src="https://streak-stats.demolab.com/?user=vikaskakarla&theme=dracula&background=07060F&border=1F1E2E&ring=BD93F9&fire=FF79C6&currStreakLabel=FFFFFF" width="100%" alt="Commit Streak Stats" />
     </td>
   </tr>
 </table>
