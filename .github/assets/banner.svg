@@ -1,133 +1,98 @@
 <svg fill="none" viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Blur filters -->
-    <filter id="blur">
-      <feGaussianBlur stdDeviation="60" />
-    </filter>
-    <filter id="textGlow">
-      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <!-- Heavy blur for Aurora background -->
+    <filter id="auroraBlur">
+      <feGaussianBlur stdDeviation="70" />
     </filter>
     
-    <!-- Linear Gradients -->
-    <linearGradient id="gridGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#9356E4" stop-opacity="0.1"/>
-      <stop offset="50%" stop-color="#00F2FE" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#FF007F" stop-opacity="0.8"/>
+    <!-- Chamfered border gradient for glass shine -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.15"/>
     </linearGradient>
-    
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00F2FE"/>
-      <stop offset="50%" stop-color="#9356E4"/>
-      <stop offset="100%" stop-color="#FF007F"/>
-    </linearGradient>
-    
-    <!-- Grid Horizon Fading Mask -->
-    <mask id="fadeMask">
-      <rect width="800" height="300" fill="url(#maskGrad)" />
-    </mask>
-    <linearGradient id="maskGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#000000" />
-      <stop offset="25%" stop-color="#000000" />
-      <stop offset="60%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#FFFFFF" />
-    </linearGradient>
+
+    <!-- Glass card drop shadow -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
   </defs>
+
+  <!-- Deep space background -->
+  <rect width="800" height="300" rx="24" fill="#07060F"/>
   
-  <!-- Deep Obsidian Background -->
-  <rect width="800" height="300" rx="20" fill="#060608"/>
-  <rect width="800" height="300" rx="20" fill="none" stroke="#1A1A24" stroke-width="1.5"/>
-
-  <!-- Liquid Ambient Under-Glow -->
-  <g opacity="0.35" filter="url(#blur)">
-    <circle cx="200" cy="180" r="100" fill="#FF007F">
-      <animate attributeName="cx" values="200;250;180;200" dur="10s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="180;220;150;180" dur="10s" repeatCount="indefinite" />
+  <!-- Aurora Background Elements (Liquid Glow) -->
+  <g filter="url(#auroraBlur)" opacity="0.65">
+    <!-- Pink blob moving in organic path -->
+    <circle cx="200" cy="100" r="140" fill="#ff79c6">
+      <animate attributeName="cx" values="200;450;150;200" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="100;200;80;100" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="r" values="140;160;130;140" dur="20s" repeatCount="indefinite" />
     </circle>
-    <circle cx="600" cy="120" r="110" fill="#00F2FE">
-      <animate attributeName="cx" values="600;550;620;600" dur="12s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="120;90;160;120" dur="12s" repeatCount="indefinite" />
+    <!-- Teal/Cyan blob moving in anti-phase -->
+    <circle cx="600" cy="200" r="150" fill="#00f5d4">
+      <animate attributeName="cx" values="600;350;650;600" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="200;100;220;200" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="r" values="150;130;160;150" dur="24s" repeatCount="indefinite" />
+    </circle>
+    <!-- Purple blob moving in center-ish area -->
+    <circle cx="400" cy="150" r="160" fill="#bd93f9">
+      <animate attributeName="cx" values="400;500;300;400" dur="18s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="150;110;190;150" dur="18s" repeatCount="indefinite" />
+      <animate attributeName="r" values="160;180;150;160" dur="18s" repeatCount="indefinite" />
     </circle>
   </g>
+  
+  <!-- Subtle dark vignette grid overlay -->
+  <rect width="800" height="300" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
 
-  <!-- 3D Perspectives Cyberpunk Grid (Animated Loop) -->
-  <g mask="url(#fadeMask)">
-    <!-- Converging Perspective Lines -->
-    <g stroke="url(#gridGrad)" stroke-width="1">
-      <line x1="400" y1="70" x2="-400" y2="300" />
-      <line x1="400" y1="70" x2="-200" y2="300" />
-      <line x1="400" y1="70" x2="0" y2="300" />
-      <line x1="400" y1="70" x2="200" y2="300" />
-      <line x1="400" y1="70" x2="400" y2="300" />
-      <line x1="400" y1="70" x2="600" y2="300" />
-      <line x1="400" y1="70" x2="800" y2="300" />
-      <line x1="400" y1="70" x2="1000" y2="300" />
-      <line x1="400" y1="70" x2="1200" y2="300" />
-    </g>
-
-    <!-- Moving Horizontal Lines (Simulating forward motion) -->
-    <g stroke="url(#gridGrad)" stroke-width="1.5">
-      <line x1="-400" y1="0" x2="1200" y2="0">
-        <animate attributeName="y1" values="70;300" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="y2" values="70;300" dur="3s" repeatCount="indefinite" />
-      </line>
-      <line x1="-400" y1="0" x2="1200" y2="0">
-        <animate attributeName="y1" values="70;300" dur="3s" begin="0.75s" repeatCount="indefinite" />
-        <animate attributeName="y2" values="70;300" dur="3s" begin="0.75s" repeatCount="indefinite" />
-      </line>
-      <line x1="-400" y1="0" x2="1200" y2="0">
-        <animate attributeName="y1" values="70;300" dur="3s" begin="1.5s" repeatCount="indefinite" />
-        <animate attributeName="y2" values="70;300" dur="3s" begin="1.5s" repeatCount="indefinite" />
-      </line>
-      <line x1="-400" y1="0" x2="1200" y2="0">
-        <animate attributeName="y1" values="70;300" dur="3s" begin="2.25s" repeatCount="indefinite" />
-        <animate attributeName="y2" values="70;300" dur="3s" begin="2.25s" repeatCount="indefinite" />
-      </line>
-    </g>
+  <!-- Frosted Glass Card -->
+  <g filter="url(#cardShadow)">
+    <!-- Semi-transparent glass pane -->
+    <rect x="50" y="40" width="700" height="220" rx="24" fill="#FFFFFF" fill-opacity="0.02" stroke="url(#borderGrad)" stroke-width="1.5"/>
+    
+    <!-- Top glass reflection highlight -->
+    <path d="M 74 40 L 726 40" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
   </g>
 
-  <!-- Glowing Neon Core Portal -->
-  <circle cx="400" cy="70" r="40" fill="none" stroke="#FF007F" stroke-width="2" opacity="0.8">
-    <animate attributeName="r" values="40;45;40" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#FF007F;#00F2FE;#9356E4;#FF007F" dur="9s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="400" cy="70" r="28" fill="none" stroke="#00F2FE" stroke-width="1.5" opacity="0.6">
-    <animate attributeName="r" values="28;25;28" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#00F2FE;#9356E4;#FF007F;#00F2FE" dur="9s" repeatCount="indefinite"/>
-  </circle>
+  <!-- macOS Window Controls (Top Left of Glass Pane) -->
+  <circle cx="80" cy="65" r="5" fill="#ff5f56"/>
+  <circle cx="96" cy="65" r="5" fill="#ffbd2e"/>
+  <circle cx="112" cy="65" r="5" fill="#27c93f"/>
 
-  <!-- Cyberpunk Sleek Tech Data Accents -->
-  <line x1="40" y1="35" x2="120" y2="35" stroke="#FF007F" stroke-width="2" opacity="0.7"/>
-  <circle cx="120" cy="35" r="3" fill="#FF007F" opacity="0.7"/>
-  <line x1="760" y1="35" x2="680" y2="35" stroke="#00F2FE" stroke-width="2" opacity="0.7"/>
-  <circle cx="680" cy="35" r="3" fill="#00F2FE" opacity="0.7"/>
+  <!-- Active Status dot in the top-right of glass pane -->
+  <g transform="translate(650, 65)">
+    <!-- Expanding ripple circle -->
+    <circle cx="0" cy="0" r="4" fill="#50fa7b" opacity="0.4">
+      <animate attributeName="r" values="4;14" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Core dot -->
+    <circle cx="0" cy="0" r="4.5" fill="#50fa7b"/>
+    <text x="14" y="3.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800" fill="#50fa7b" letter-spacing="1">SYS_ACTIVE</text>
+  </g>
 
   <!-- Typography -->
   <style>
-    .title {
-      font-family: 'Courier New', Courier, monospace, sans-serif;
-      font-weight: 900;
-      font-size: 44px;
-      letter-spacing: 4px;
-    }
-    .neon-glow {
-      fill: url(#textGrad);
-    }
-    .subtitle {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      fill: #86868B;
+    .title-text {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      fill: #FFFFFF;
       letter-spacing: 5px;
+    }
+    .subtitle-text {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      fill: #A0A0A5;
+      letter-spacing: 4px;
     }
   </style>
 
-  <!-- Glowing Title Overlay -->
-  <text x="400" y="160" dominant-baseline="middle" text-anchor="middle" class="title neon-glow" filter="url(#textGlow)">VIKAS KAKARLA</text>
-  <text x="400" y="160" dominant-baseline="middle" text-anchor="middle" class="title neon-glow">VIKAS KAKARLA</text>
-  
-  <text x="400" y="210" dominant-baseline="middle" text-anchor="middle" class="subtitle">SYS.ARCHITECT // FULL-STACK BUILDER</text>
+  <!-- Main Headers -->
+  <text x="400" y="145" dominant-baseline="middle" text-anchor="middle" class="title-text">VIKAS KAKARLA</text>
+  <text x="400" y="195" dominant-baseline="middle" text-anchor="middle" class="subtitle-text">CRAFTING PREMIUM DIGITAL EXPERIENCES</text>
+
 </svg>

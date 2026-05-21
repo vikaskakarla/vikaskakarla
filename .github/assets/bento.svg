@@ -1,143 +1,268 @@
-<svg fill="none" viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 800 320" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FF007F"/>
-      <stop offset="50%" stop-color="#9356E4"/>
-      <stop offset="100%" stop-color="#00F2FE"/>
-    </linearGradient>
-    <filter id="borderGlow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <!-- Heavy blur for backlighting -->
+    <filter id="auroraBlur">
+      <feGaussianBlur stdDeviation="50" />
     </filter>
-    <filter id="radarGlow">
-      <feGaussianBlur stdDeviation="5" />
+
+    <!-- Glass card border gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+      <stop offset="80%" stop-color="#FFFFFF" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.14"/>
+    </linearGradient>
+
+    <!-- App icon border gradient -->
+    <linearGradient id="iconBorderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Card shadows -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.45"/>
     </filter>
   </defs>
 
+  <!-- Styles -->
   <style>
-    .card {
-      fill: #060608;
-      stroke: url(#cyberGrad);
-      stroke-width: 1.5;
-      filter: url(#borderGlow);
-    }
-    .header {
-      font-family: 'Courier New', Courier, monospace;
+    .header-text {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       font-weight: 700;
-      font-size: 16px;
-      fill: #00F2FE;
-      letter-spacing: 1px;
+      font-size: 11px;
+      fill: #00f5d4;
+      letter-spacing: 2px;
     }
-    .text {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    .body-text {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       font-size: 13.5px;
-      fill: #9CA3AF;
+      fill: #A0A0A5;
       line-height: 1.6;
     }
-    .bold {
-      font-weight: 700;
-      fill: #FFFFFF;
-      font-family: 'Courier New', Courier, monospace;
-    }
-    .tag {
-      fill: #0E0F14;
-      stroke: #1F2937;
-      stroke-width: 1;
-      rx: 6px;
-    }
-    .tag-text {
-      font-family: 'Courier New', Courier, monospace;
+    .legend-title {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       font-size: 11px;
-      font-weight: 700;
-      fill: #00F2FE;
+      font-weight: 600;
+      fill: #E1E1E6;
+    }
+    .legend-sub {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      font-size: 9px;
+      fill: #7D7D82;
+    }
+    .app-label {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      font-size: 9.5px;
+      font-weight: 600;
+      fill: #8E8E93;
     }
   </style>
 
-  <!-- Left Bento Box: Engine/Philosophy -->
-  <g transform="translate(0, 0)">
-    <rect width="385" height="300" rx="16" class="card"/>
-    <text x="30" y="45" class="header">EXEC // INSIDE_THE_ENGINE</text>
-    <text x="30" y="85" class="text">Vikas is a builder focused on performance,</text>
-    <text x="30" y="110" class="text">modular architecture, and beautiful interfaces.</text>
-    <text x="30" y="135" class="text">He believes true design is about how</text>
-    <text x="30" y="160" class="text">something works, not just how it looks.</text>
+  <!-- Deep space background -->
+  <rect width="800" height="320" rx="24" fill="#07060F"/>
 
-    <!-- Bullets -->
-    <rect x="30" y="198" width="6" height="6" fill="#FF007F"/>
-    <text x="48" y="205" class="text"><tspan class="bold">PHILOSOPHY:</tspan> Less but better.</text>
-
-    <rect x="30" y="228" width="6" height="6" fill="#9356E4"/>
-    <text x="48" y="235" class="text"><tspan class="bold">CORE_FOCUS:</tspan> React, Node.js, and Cloud.</text>
-
-    <rect x="30" y="258" width="6" height="6" fill="#00F2FE"/>
-    <text x="48" y="265" class="text"><tspan class="bold">STANDARD :</tspan> Clean code, robust tests.</text>
+  <!-- Backlight glows underneath cards -->
+  <g filter="url(#auroraBlur)" opacity="0.6">
+    <!-- Left glow (purple) -->
+    <circle cx="150" cy="160" r="100" fill="#bd93f9">
+      <animate attributeName="cx" values="150;200;150" dur="12s" repeatCount="indefinite" />
+    </circle>
+    <!-- Right glow (pink/teal blend) -->
+    <circle cx="650" cy="160" r="110" fill="#ff79c6">
+      <animate attributeName="cx" values="650;580;650" dur="15s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="550" cy="220" r="90" fill="#00f5d4">
+      <animate attributeName="cy" values="220;140;220" dur="14s" repeatCount="indefinite" />
+    </circle>
   </g>
 
-  <!-- Right Bento Box: Stack -->
-  <g transform="translate(415, 0)">
-    <rect width="385" height="300" rx="16" class="card"/>
-    <text x="30" y="45" class="header">SYSTEM // CURATED_STACK</text>
-    <text x="30" y="80" class="text">A curated selection of tools and languages</text>
-    <text x="30" y="105" class="text">used to build premium applications:</text>
+  <!-- Outer border stroke -->
+  <rect width="800" height="320" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1.5"/>
 
-    <!-- Tech Radar Animation in Background (very subtle grid) -->
-    <g opacity="0.08" transform="translate(290, 45)">
-      <circle cx="40" cy="40" r="30" fill="none" stroke="#FFFFFF" stroke-width="1"/>
-      <circle cx="40" cy="40" r="20" fill="none" stroke="#FFFFFF" stroke-width="1"/>
-      <circle cx="40" cy="40" r="10" fill="none" stroke="#FFFFFF" stroke-width="1"/>
-      <line x1="40" y1="0" x2="40" y2="80" stroke="#FFFFFF" stroke-width="1"/>
-      <line x1="0" y1="40" x2="80" y2="40" stroke="#FFFFFF" stroke-width="1"/>
-      
-      <!-- Sweep line -->
-      <line x1="40" y1="40" x2="80" y2="40" stroke="#00F2FE" stroke-width="2" filter="url(#radarGlow)">
-        <animateTransform attributeName="transform" type="rotate" from="0 40 40" to="360 40 40" dur="4s" repeatCount="indefinite"/>
-      </line>
-    </g>
+  <!-- ==================== LEFT BENTO: PHILOSOPHY ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="10" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.2"/>
+    <path d="M 28 10 L 362 10" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>
+  </g>
 
-    <!-- Tag Grid -->
-    <!-- Row 1 -->
-    <g transform="translate(30, 130)">
-      <rect width="90" height="26" rx="6" class="tag"/>
-      <text x="45" y="17" text-anchor="middle" class="tag-text">TypeScript</text>
-    </g>
-    <g transform="translate(130, 130)">
-      <rect width="70" height="26" rx="6" class="tag"/>
-      <text x="35" y="17" text-anchor="middle" class="tag-text">React</text>
-    </g>
-    <g transform="translate(210, 130)">
-      <rect width="80" height="26" rx="6" class="tag"/>
-      <text x="40" y="17" text-anchor="middle" class="tag-text">Next.js</text>
-    </g>
+  <!-- Window controls -->
+  <circle cx="38" cy="35" r="4.5" fill="#ff5f56"/>
+  <circle cx="52" cy="35" r="4.5" fill="#ffbd2e"/>
+  <circle cx="66" cy="35" r="4.5" fill="#27c93f"/>
 
-    <!-- Row 2 -->
-    <g transform="translate(30, 170)">
-      <rect width="80" height="26" rx="6" class="tag"/>
-      <text x="40" y="17" text-anchor="middle" class="tag-text">Node.js</text>
-    </g>
-    <g transform="translate(120, 170)">
-      <rect width="60" height="26" rx="6" class="tag"/>
-      <text x="30" y="17" text-anchor="middle" class="tag-text">Go</text>
-    </g>
-    <g transform="translate(190, 170)">
-      <rect width="70" height="26" rx="6" class="tag"/>
-      <text x="35" y="17" text-anchor="middle" class="tag-text">Python</text>
-    </g>
+  <!-- Header -->
+  <text x="38" y="70" class="header-text">EXEC // SYSTEMS_PHILOSOPHY</text>
 
-    <!-- Row 3 -->
-    <g transform="translate(30, 210)">
-      <rect width="60" height="26" rx="6" class="tag"/>
-      <text x="30" y="17" text-anchor="middle" class="tag-text">AWS</text>
-    </g>
-    <g transform="translate(100, 210)">
-      <rect width="80" height="26" rx="6" class="tag"/>
-      <text x="40" y="17" text-anchor="middle" class="tag-text">GraphQL</text>
-    </g>
-    <g transform="translate(190, 210)">
-      <rect width="70" height="26" rx="6" class="tag"/>
-      <text x="35" y="17" text-anchor="middle" class="tag-text">Docker</text>
+  <!-- Text Block -->
+  <text x="38" y="105" class="body-text">Vikas builds high-performance,</text>
+  <text x="38" y="128" class="body-text">modular software architectures and</text>
+  <text x="38" y="151" class="body-text">premium user experiences. He believes</text>
+  <text x="38" y="174" class="body-text">true design is how code works.</text>
+
+  <!-- Legends (Left Side Bottom) -->
+  <!-- UI/UX Craft (Pink) -->
+  <circle cx="43" cy="216" r="4" fill="#ff79c6"/>
+  <text x="56" y="215" class="legend-title">UX/UI Craftsmanship</text>
+  <text x="56" y="227" class="legend-sub">High fidelity &amp; animations • 92%</text>
+
+  <!-- Architecture (Purple) -->
+  <circle cx="43" cy="246" r="4" fill="#bd93f9"/>
+  <text x="56" y="245" class="legend-title">Clean Architecture</text>
+  <text x="56" y="257" class="legend-sub">Modular &amp; robust codebases • 88%</text>
+
+  <!-- Performance (Teal) -->
+  <circle cx="43" cy="276" r="4" fill="#00f5d4"/>
+  <text x="56" y="275" class="legend-title">Systems Performance</text>
+  <text x="56" y="287" class="legend-sub">Optimization &amp; scalability • 85%</text>
+
+  <!-- Concentric Rings (Right Side of Left Pane) -->
+  <!-- We put them in a group rotated -90deg so they draw from the top -->
+  <g transform="rotate(-90 295 180)">
+    <!-- UX/UI Ring (Outer) -->
+    <circle cx="295" cy="180" r="48" stroke="#ff79c6" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+    <circle cx="295" cy="180" r="48" stroke="#ff79c6" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6" fill="none">
+      <animate attributeName="stroke-dashoffset" from="301.6" to="24.1" dur="2.2s" fill="freeze"/>
+    </circle>
+
+    <!-- Architecture Ring (Middle) -->
+    <circle cx="295" cy="180" r="34" stroke="#bd93f9" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+    <circle cx="295" cy="180" r="34" stroke="#bd93f9" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" fill="none">
+      <animate attributeName="stroke-dashoffset" from="213.6" to="25.6" dur="1.9s" fill="freeze"/>
+    </circle>
+
+    <!-- Performance Ring (Inner) -->
+    <circle cx="295" cy="180" r="20" stroke="#00f5d4" stroke-opacity="0.12" stroke-width="8" fill="none"/>
+    <circle cx="295" cy="180" r="20" stroke="#00f5d4" stroke-width="8.5" stroke-linecap="round" stroke-dasharray="125.7" stroke-dashoffset="125.7" fill="none">
+      <animate attributeName="stroke-dashoffset" from="125.7" to="18.9" dur="1.6s" fill="freeze"/>
+    </circle>
+  </g>
+
+
+  <!-- ==================== RIGHT BENTO: LAUNCHPAD ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="415" y="10" width="375" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.015" stroke="url(#borderGrad)" stroke-width="1.2"/>
+    <path d="M 433 10 L 767 10" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>
+  </g>
+
+  <!-- Window controls -->
+  <circle cx="443" cy="35" r="4.5" fill="#ff5f56"/>
+  <circle cx="457" cy="35" r="4.5" fill="#ffbd2e"/>
+  <circle cx="471" cy="35" r="4.5" fill="#27c93f"/>
+
+  <!-- Header -->
+  <text x="443" y="70" class="header-text">LAUNCHPAD // CURATED_STACK</text>
+
+  <!-- ============ APP ICON GRID ============ -->
+
+  <!-- ROW 1 -->
+  <!-- Col 1: TypeScript -->
+  <g transform="translate(485, 85)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <rect x="8" y="8" width="32" height="32" rx="6" fill="#007acc"/>
+    <text x="35" y="34" font-family="-apple-system, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" text-anchor="end">TS</text>
+  </g>
+  <text x="509" y="146" text-anchor="middle" class="app-label">TypeScript</text>
+
+  <!-- Col 2: React -->
+  <g transform="translate(578, 85)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Center of icon: (24, 24) -->
+    <!-- Atom rings -->
+    <g transform="translate(24, 24)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+        <ellipse cx="0" cy="0" rx="14" ry="5.5" stroke="#61dafb" stroke-width="1.2" fill="none"/>
+        <ellipse cx="0" cy="0" rx="14" ry="5.5" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(60)"/>
+        <ellipse cx="0" cy="0" rx="14" ry="5.5" stroke="#61dafb" stroke-width="1.2" fill="none" transform="rotate(120)"/>
+        <circle cx="0" cy="0" r="2.5" fill="#61dafb"/>
+      </g>
     </g>
   </g>
+  <text x="602" y="146" text-anchor="middle" class="app-label">React</text>
+
+  <!-- Col 3: Next.js -->
+  <g transform="translate(671, 85)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <circle cx="24" cy="24" r="14" fill="#000000" stroke="#333333" stroke-width="1"/>
+    <path d="M 18 31 L 18 17 L 29 32 L 29 17" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="695" y="146" text-anchor="middle" class="app-label">Next.js</text>
+
+
+  <!-- ROW 2 -->
+  <!-- Col 1: Node.js -->
+  <g transform="translate(485, 158)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <g transform="translate(24, 24)">
+      <!-- Hexagon Node -->
+      <polygon points="12,-7 12,7 0,14 -12,7 -12,-7 0,-14" fill="none" stroke="#339933" stroke-width="1.8"/>
+      <!-- Inner node leaf shape -->
+      <path d="M-4,-4 Q0,-12 4,-4 Q12,0 4,4 Q0,12 -4,4 Q-12,0 -4,-4 Z" fill="#339933" opacity="0.85"/>
+    </g>
+  </g>
+  <text x="509" y="219" text-anchor="middle" class="app-label">Node.js</text>
+
+  <!-- Col 2: Go -->
+  <g transform="translate(578, 158)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <text x="24" y="29" font-family="-apple-system, sans-serif" font-weight="900" font-style="italic" font-size="18" fill="#00ADD8" text-anchor="middle" letter-spacing="-0.5">Go</text>
+  </g>
+  <text x="602" y="219" text-anchor="middle" class="app-label">Go</text>
+
+  <!-- Col 3: Python -->
+  <g transform="translate(671, 158)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph (Simplified Snakes) -->
+    <g transform="translate(14, 14)">
+      <path d="M 9 0 L 14 0 A 5 5 0 0 1 19 5 L 19 9 L 17 9 A 2 2 0 0 0 15 11 L 15 14 A 5 5 0 0 1 10 19 L 5 19 A 5 5 0 0 1 0 14 L 0 10 L 2 10 A 2 2 0 0 0 4 8 L 4 5 A 5 5 0 0 1 9 0 Z" fill="#3572A5"/>
+      <path d="M 11 20 L 6 20 A 5 5 0 0 1 1 15 L 1 11 L 3 11 A 2 2 0 0 0 5 9 L 5 6 A 5 5 0 0 1 10 1 L 15 1 A 5 5 0 0 1 20 6 L 20 10 L 18 10 A 2 2 0 0 0 16 12 L 16 15 A 5 5 0 0 1 11 20 Z" fill="#F1E05A" opacity="0.95" transform="rotate(180 10 10)"/>
+    </g>
+  </g>
+  <text x="695" y="219" text-anchor="middle" class="app-label">Python</text>
+
+
+  <!-- ROW 3 -->
+  <!-- Col 1: AWS -->
+  <g transform="translate(485, 231)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <path d="M 12 28 C 12 24 16 23 18 23 C 24 23 25 26 25 29 C 22 30 18 30 16 30 C 13 30 12 29 12 28 Z M 30 24 C 29 22 26 19 21 19 C 14 19 10 24 10 29 C 10 33 13 36 18 36 C 22 36 25 34 26 32 C 26 34 28 35 30 35 C 32 35 34 34 34 32 C 34 28 34 22 34 20 C 34 16 32 14 28 14 C 25 14 22 16 21 17 M 13 36 A 28 28 0 0 0 35 36" stroke="#FF9900" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="509" y="292" text-anchor="middle" class="app-label">AWS</text>
+
+  <!-- Col 2: Docker -->
+  <g transform="translate(578, 231)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <path d="M 10 24 L 38 24 C 38 21 34 21 34 18 C 30 18 30 21 27 21 C 27 18 23 18 23 15 L 20 15 C 20 18 16 18 16 21 C 12 21 12 18 12 16 L 10 16 Z M 8 26 C 8 32 15 35 24 35 C 33 35 38 32 40 26 Z" fill="#2496ED"/>
+  </g>
+  <text x="602" y="292" text-anchor="middle" class="app-label">Docker</text>
+
+  <!-- Col 3: GraphQL -->
+  <g transform="translate(671, 231)">
+    <rect width="48" height="48" rx="12" fill="#0F101A" stroke="url(#iconBorderGrad)" stroke-width="1"/>
+    <!-- Icon Glyph -->
+    <g transform="translate(24, 24)">
+      <!-- Hexagon path -->
+      <polygon points="0,-13 11,-7 11,7 0,13 -11,7 -11,-7" fill="none" stroke="#e10098" stroke-width="1.2"/>
+      <polygon points="-11,-7 11,7" fill="none" stroke="#e10098" stroke-width="1.2"/>
+      <polygon points="11,-7 -11,7" fill="none" stroke="#e10098" stroke-width="1.2"/>
+      <polygon points="0,-13 0,13" fill="none" stroke="#e10098" stroke-width="1.2"/>
+      <!-- Dots -->
+      <circle cx="0" cy="-13" r="2" fill="#e10098"/>
+      <circle cx="11" cy="-7" r="2" fill="#e10098"/>
+      <circle cx="11" cy="7" r="2" fill="#e10098"/>
+      <circle cx="0" cy="13" r="2" fill="#e10098"/>
+      <circle cx="-11" cy="7" r="2" fill="#e10098"/>
+      <circle cx="-11" cy="-7" r="2" fill="#e10098"/>
+      <circle cx="0" cy="0" r="2.5" fill="#e10098"/>
+    </g>
+  </g>
+  <text x="695" y="292" text-anchor="middle" class="app-label">GraphQL</text>
+
 </svg>
