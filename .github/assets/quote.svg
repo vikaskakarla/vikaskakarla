@@ -1,46 +1,71 @@
 <svg fill="none" viewBox="0 0 800 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="topGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FF007F" stop-opacity="0.8"/>
-      <stop offset="30%" stop-color="#9356E4" stop-opacity="0.8"/>
-      <stop offset="70%" stop-color="#4B7BEC" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#38EF7D" stop-opacity="0.8"/>
+    <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF007F"/>
+      <stop offset="50%" stop-color="#9356E4"/>
+      <stop offset="100%" stop-color="#00F2FE"/>
     </linearGradient>
+    <filter id="borderGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
 
   <style>
     .card { 
-      fill: #0A0A0C; 
-      stroke: #222226; 
-      stroke-width: 1; 
+      fill: #060608; 
+      stroke: url(#cyberGrad); 
+      stroke-width: 1.5; 
+      filter: url(#borderGlow);
     }
     .quote {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-weight: 500;
-      font-size: 18px;
-      fill: #F5F5F7;
-      letter-spacing: -0.3px;
+      font-size: 17px;
+      fill: #FFFFFF;
+      letter-spacing: -0.2px;
     }
     .author {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      fill: #86868B;
-      letter-spacing: -0.1px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
+      font-size: 13px;
+      fill: #00F2FE;
+      letter-spacing: 1px;
+    }
+    .grid-pattern {
+      opacity: 0.05;
+      stroke: #FFFFFF;
+      stroke-width: 1;
     }
   </style>
 
+  <!-- Card Body -->
   <rect width="800" height="150" rx="16" class="card"/>
   
-  <!-- Apple Intelligence Sleek Top Gradient Line -->
-  <line x1="0" y1="0" x2="800" y2="0" stroke="url(#topGrad)" stroke-width="2.5"/>
-
-  <text x="40" y="65" class="quote">“The people who are crazy enough to think they can change the world</text>
-  <text x="40" y="92" class="quote">are the ones who do.”</text>
-  <text x="40" y="122" class="author">— Steve Jobs</text>
-  
-  <!-- Sleek Apple Logo Badge on the right side -->
-  <g transform="translate(715, 52)" opacity="0.12">
-    <path d="M15.224 4.485c.844-1.022 1.412-2.443 1.256-3.86-1.218.05-2.693.812-3.568 1.833-.782.903-1.464 2.345-1.282 3.738 1.359.106 2.75-.688 3.594-1.711zm3.874 7.604c-.035-2.28 1.859-3.376 1.946-3.43-1.066-1.558-2.73-1.77-3.313-1.81-1.393-.142-2.723.822-3.43.822-.707 0-1.818-.802-2.99-.78-1.542.022-2.964.896-3.759 2.274-1.603 2.783-.41 6.896 1.144 9.143.76 1.1 1.642 2.327 2.83 2.281 1.146-.046 1.579-.743 2.965-.743 1.385 0 1.774.743 2.965.719 1.211-.023 1.988-1.107 2.744-2.21 1.792-2.615 2.062-3.155 2.083-3.21-.044-.02-1.996-.764-2.01-3.056z" fill="#FFFFFF"/>
+  <!-- Subtle Grid Overlay -->
+  <g class="grid-pattern">
+    <line x1="0" y1="30" x2="800" y2="30"/>
+    <line x1="0" y1="60" x2="800" y2="60"/>
+    <line x1="0" y1="90" x2="800" y2="90"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="100" y1="0" x2="100" y2="150"/>
+    <line x1="200" y1="0" x2="200" y2="150"/>
+    <line x1="300" y1="0" x2="300" y2="150"/>
+    <line x1="400" y1="0" x2="400" y2="150"/>
+    <line x1="500" y1="0" x2="500" y2="150"/>
+    <line x1="600" y1="0" x2="600" y2="150"/>
+    <line x1="700" y1="0" x2="700" y2="150"/>
   </g>
+
+  <!-- Quote Text -->
+  <text x="40" y="60" class="quote">“The people who are crazy enough to think they can change the world</text>
+  <text x="40" y="88" class="quote">are the ones who do.”</text>
+  <text x="40" y="118" class="author">SYS.INIT // STEVE_JOBS</text>
+  
+  <!-- Tech graphic corner accent -->
+  <path d="M 770 120 L 770 140 L 750 140" stroke="#FF007F" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M 30 10 L 10 10 L 10 30" stroke="#00F2FE" stroke-width="2" fill="none" opacity="0.8"/>
 </svg>

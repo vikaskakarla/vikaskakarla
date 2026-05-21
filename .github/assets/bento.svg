@@ -1,84 +1,100 @@
 <svg fill="none" viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="blur-small">
-      <feGaussianBlur stdDeviation="6" />
+    <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF007F"/>
+      <stop offset="50%" stop-color="#9356E4"/>
+      <stop offset="100%" stop-color="#00F2FE"/>
+    </linearGradient>
+    <filter id="borderGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="radarGlow">
+      <feGaussianBlur stdDeviation="5" />
     </filter>
   </defs>
 
   <style>
     .card {
-      fill: #0A0A0C;
-      stroke: #222226;
-      stroke-width: 1;
+      fill: #060608;
+      stroke: url(#cyberGrad);
+      stroke-width: 1.5;
+      filter: url(#borderGlow);
     }
     .header {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 600;
-      font-size: 18px;
-      fill: #F5F5F7;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
+      font-size: 16px;
+      fill: #00F2FE;
+      letter-spacing: 1px;
     }
     .text {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      fill: #86868B;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13.5px;
+      fill: #9CA3AF;
       line-height: 1.6;
     }
     .bold {
-      font-weight: 600;
-      fill: #F5F5F7;
+      font-weight: 700;
+      fill: #FFFFFF;
+      font-family: 'Courier New', Courier, monospace;
     }
     .tag {
-      fill: #161617;
-      stroke: #222226;
+      fill: #0E0F14;
+      stroke: #1F2937;
       stroke-width: 1;
       rx: 6px;
     }
     .tag-text {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       font-size: 11px;
-      font-weight: 500;
-      fill: #F5F5F7;
+      font-weight: 700;
+      fill: #00F2FE;
     }
   </style>
 
-  <!-- Left Bento Box -->
+  <!-- Left Bento Box: Engine/Philosophy -->
   <g transform="translate(0, 0)">
     <rect width="385" height="300" rx="16" class="card"/>
-    <text x="30" y="45" class="header"> Inside the Engine</text>
+    <text x="30" y="45" class="header">EXEC // INSIDE_THE_ENGINE</text>
     <text x="30" y="85" class="text">Vikas is a builder focused on performance,</text>
     <text x="30" y="110" class="text">modular architecture, and beautiful interfaces.</text>
     <text x="30" y="135" class="text">He believes true design is about how</text>
     <text x="30" y="160" class="text">something works, not just how it looks.</text>
 
     <!-- Bullets -->
-    <circle cx="35" cy="205" r="3" fill="#9356E4"/>
-    <text x="50" y="209" class="text"><tspan class="bold">Philosophy:</tspan> Less but better.</text>
+    <rect x="30" y="198" width="6" height="6" fill="#FF007F"/>
+    <text x="48" y="205" class="text"><tspan class="bold">PHILOSOPHY:</tspan> Less but better.</text>
 
-    <circle cx="35" cy="235" r="3" fill="#4B7BEC"/>
-    <text x="50" y="239" class="text"><tspan class="bold">Core Focus:</tspan> React, Node.js, and Cloud.</text>
+    <rect x="30" y="228" width="6" height="6" fill="#9356E4"/>
+    <text x="48" y="235" class="text"><tspan class="bold">CORE_FOCUS:</tspan> React, Node.js, and Cloud.</text>
 
-    <circle cx="35" cy="265" r="3" fill="#38EF7D"/>
-    <text x="50" y="269" class="text"><tspan class="bold">Standard:</tspan> Clean code, robust tests.</text>
+    <rect x="30" y="258" width="6" height="6" fill="#00F2FE"/>
+    <text x="48" y="265" class="text"><tspan class="bold">STANDARD :</tspan> Clean code, robust tests.</text>
   </g>
 
-  <!-- Right Bento Box -->
+  <!-- Right Bento Box: Stack -->
   <g transform="translate(415, 0)">
     <rect width="385" height="300" rx="16" class="card"/>
-    <text x="30" y="45" class="header">🛠️ The Tool Belt</text>
+    <text x="30" y="45" class="header">SYSTEM // CURATED_STACK</text>
     <text x="30" y="80" class="text">A curated selection of tools and languages</text>
     <text x="30" y="105" class="text">used to build premium applications:</text>
 
-    <!-- Animated Apple Intelligence wave icon in top right corner -->
-    <g transform="translate(325, 25)">
-      <circle cx="15" cy="15" r="10" fill="#FF007F" opacity="0.35" filter="url(#blur-small)">
-        <animate attributeName="r" values="10;15;10" dur="4s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="15" cy="15" r="8" fill="#4B7BEC" opacity="0.35" filter="url(#blur-small)">
-        <animate attributeName="r" values="8;13;8" dur="3.2s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="15" cy="15" r="6" fill="#38EF7D" opacity="0.35" filter="url(#blur-small)">
-        <animate attributeName="r" values="6;11;6" dur="4.8s" repeatCount="indefinite"/>
-      </circle>
+    <!-- Tech Radar Animation in Background (very subtle grid) -->
+    <g opacity="0.08" transform="translate(290, 45)">
+      <circle cx="40" cy="40" r="30" fill="none" stroke="#FFFFFF" stroke-width="1"/>
+      <circle cx="40" cy="40" r="20" fill="none" stroke="#FFFFFF" stroke-width="1"/>
+      <circle cx="40" cy="40" r="10" fill="none" stroke="#FFFFFF" stroke-width="1"/>
+      <line x1="40" y1="0" x2="40" y2="80" stroke="#FFFFFF" stroke-width="1"/>
+      <line x1="0" y1="40" x2="80" y2="40" stroke="#FFFFFF" stroke-width="1"/>
+      
+      <!-- Sweep line -->
+      <line x1="40" y1="40" x2="80" y2="40" stroke="#00F2FE" stroke-width="2" filter="url(#radarGlow)">
+        <animateTransform attributeName="transform" type="rotate" from="0 40 40" to="360 40 40" dur="4s" repeatCount="indefinite"/>
+      </line>
     </g>
 
     <!-- Tag Grid -->
