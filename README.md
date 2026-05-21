@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- APPLE DYNAMIC AURORA GLASSMORPHISM BANNER -->
-<img src="https://raw.githubusercontent.com/vikaskakarla/vikaskakarla/main/.github/assets/banner.svg?v=2" width="100%" alt="Vikas Kakarla Glassmorphism Banner" />
+<img src="https://raw.githubusercontent.com/vikaskakarla/vikaskakarla/main/.github/assets/banner.svg?v=3" width="100%" alt="Vikas Kakarla Glassmorphism Banner" />
 
 <br/><br/>
 
@@ -11,12 +11,12 @@
 <br/><br/>
 
 <!-- GLASSMORPHISM STEVE JOBS QUOTE CARD -->
-<img src="https://raw.githubusercontent.com/vikaskakarla/vikaskakarla/main/.github/assets/quote.svg?v=2" width="100%" alt="Steve Jobs Quote Card" />
+<img src="https://raw.githubusercontent.com/vikaskakarla/vikaskakarla/main/.github/assets/quote.svg?v=3" width="100%" alt="Steve Jobs Quote Card" />
 
 <br/><br/>
 
 <!-- DUAL BENTO WIDGET PANEL -->
-<img src="https://raw.githubusercontent.com/vikaskakarla/vikaskakarla/main/.github/assets/bento.svg?v=2" width="100%" alt="Bento Info & Stack" />
+<img src="https://raw.githubusercontent.com/vikaskakarla/vikaskakarla/main/.github/assets/bento.svg?v=3" width="100%" alt="Bento Info & Stack" />
 
 <br/><br/>
 
