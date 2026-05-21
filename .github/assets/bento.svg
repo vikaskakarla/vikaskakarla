@@ -125,10 +125,10 @@
   <text x="30" y="55" class="header-text">EXEC // CORE_SYSTEMS_PHILOSOPHY</text>
 
   <!-- Bio / Philosophy statement -->
-  <text x="30" y="88" class="body-text">Vikas engineers high-performance,</text>
-  <text x="30" y="109" class="body-text">modular software architectures and</text>
-  <text x="30" y="130" class="body-text">premium user interfaces. He believes</text>
-  <text x="30" y="151" class="body-text">true design is how the system works.</text>
+  <text x="30" y="88" class="body-text">Vikas shapes the future of the web</text>
+  <text x="30" y="109" class="body-text">by blending clean, robust architecture</text>
+  <text x="30" y="130" class="body-text">with premium, interactive interfaces</text>
+  <text x="30" y="151" class="body-text">that feel like absolute magic.</text>
 
   <!-- Telemetry labels -->
   <circle cx="35" cy="201" r="4" fill="#ff79c6"/>

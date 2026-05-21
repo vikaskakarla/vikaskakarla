@@ -24,10 +24,10 @@
 <table border="0" cellpadding="0" cellspacing="10" align="center" width="100%">
   <tr>
     <td width="50%" align="center" valign="top">
-      <img src="https://github-readme-stats.vercel.app/api?username=vikaskakarla&show_icons=true&bg_color=030108&title_color=ffffff&text_color=A0A0A5&icon_color=00f5d4&border_color=1F1E2E&count_private=true&include_all_commits=true&hide_rank=true&cache_seconds=1800" width="100%" alt="GitHub Stats" />
+      <img src="https://github-readme-stats-fast.vercel.app/api?username=vikaskakarla&show_icons=true&bg_color=030108&title_color=ffffff&text_color=A0A0A5&icon_color=00f5d4&border_color=1F1E2E&count_private=true&include_all_commits=true&hide_rank=true&cache_seconds=1800" width="100%" alt="GitHub Stats" />
     </td>
     <td width="50%" align="center" valign="top">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vikaskakarla&layout=compact&bg_color=030108&title_color=ffffff&text_color=A0A0A5&border_color=1F1E2E&langs_count=8&exclude_repo=vikaskakarla&count_private=true&cache_seconds=1800" width="100%" alt="Most Used Languages" />
+      <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=vikaskakarla&layout=compact&bg_color=030108&title_color=ffffff&text_color=A0A0A5&border_color=1F1E2E&langs_count=8&exclude_repo=vikaskakarla&count_private=true&cache_seconds=1800" width="100%" alt="Most Used Languages" />
     </td>
   </tr>
   <tr>
